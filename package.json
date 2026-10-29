@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "tsx server.ts",
-    "test": "tsx --test src/lib/order.test.ts src/lib/rate-limit.test.ts",
+    "test": "tsx --test src/lib/order.test.ts src/lib/rate-limit.test.ts tests/smoke.test.ts",
+    "test:smoke": "tsx --test tests/smoke.test.ts",
+    "test:e2e": "playwright test",
+    "test:all": "npm test && npm run test:e2e",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,6 +25,7 @@
     "vite": "^8.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/react": "^19.3.0",

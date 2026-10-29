@@ -20,6 +20,19 @@ npm run dev     # http://localhost:3000
 
 The dev server exposes the same `/api/*` routes through a Vite plugin, so no separate backend is needed locally.
 
+### Testing
+
+`npm test` runs the order and rate-limit unit tests plus an HTTP smoke test. The smoke test starts its own Vite server on a free port, checks that every Roots Collection and lookbook image is a valid WebP and completes a WhatsApp checkout request end to end, then shuts the server down. It needs no running server or browser, so it is safe to run before every deploy.
+
+A browser-level smoke test in `tests/e2e` adds a Roots tee to the bag and completes the checkout dialog in Chromium. Install the browser once, then run it:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+The Playwright test boots its own Vite server on port 3100 and intercepts the WhatsApp popup, so it never contacts the external site. Use `npm run test:all` to run both suites.
+
 ### Scripts
 
 | Command | Description |
@@ -27,7 +40,10 @@ The dev server exposes the same `/api/*` routes through a Vite plugin, so no sep
 | `npm run dev` | Start the dev server on port 3000 |
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Preview the production build |
-| `npm test` | Run the order and rate-limit unit tests |
+| `npm test` | Run the unit tests and the HTTP smoke test |
+| `npm run test:smoke` | Run only the HTTP smoke test (boots a temporary Vite server) |
+| `npm run test:e2e` | Run the Playwright browser checkout test |
+| `npm run test:all` | Run all unit, HTTP smoke and browser tests |
 | `npm run lint` | TypeScript typecheck (`tsc --noEmit`) |
 | `npm start` | Serve the built app with the optional Express server |
 
@@ -71,6 +87,8 @@ src/
   components/     UI components (product, bag, dialogs)
   lib/            Catalog, order logic and rate limiter (+ tests)
   App.tsx         Page composition
+tests/            HTTP smoke test (Roots images + checkout)
+  e2e/            Playwright browser checkout test
 server.ts         Optional Express server
 vercel.json       Vercel build/rewrite/security-header config
 ```
