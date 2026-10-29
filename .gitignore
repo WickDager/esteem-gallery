@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Local env files
+.env
+.env.local
+.env*.local
+
+# Local runtime data
+data/
+*.log
+
+# AI Studio workspace (export temp artifacts)
+.aistudio/
+
+# Vercel
+.vercel/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.playwright-cli
