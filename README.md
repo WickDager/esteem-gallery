@@ -22,7 +22,7 @@ The dev server exposes the same `/api/*` routes through a Vite plugin, so no sep
 
 ### Testing
 
-`npm test` runs the order and rate-limit unit tests plus an HTTP smoke test. The smoke test starts its own Vite server on a free port, checks that every Roots Collection and lookbook image is a valid WebP and completes a WhatsApp checkout request end to end, then shuts the server down. It needs no running server or browser, so it is safe to run before every deploy.
+`npm test` runs the order and rate-limit unit tests plus an HTTP smoke test. The smoke test starts its own Vite server on a free port, checks that every Roots Collection and lookbook image is a valid WebP, verifies the SEO files and metadata, and completes a WhatsApp checkout request end to end, then shuts the server down. It needs no running server or browser, so it is safe to run before every deploy.
 
 A browser-level smoke test in `tests/e2e` adds a Roots tee to the bag and completes the checkout dialog in Chromium. Install the browser once, then run it:
 
@@ -56,6 +56,12 @@ Copy `.env.example` to `.env.local` for local development, and add the same vari
 | `WHATSAPP_PHONE_NUMBER` | No | WhatsApp number that receives orders. Defaults to `+263 788 554 277`. |
 
 No database is used: orders are delivered to WhatsApp, so the chat thread is the order log.
+
+## SEO
+
+`index.html` carries the canonical URL, keyword-focused title and description, Open Graph/Twitter tags, and JSON-LD for the store, website and Roots Collection. `public/robots.txt` and `public/sitemap.xml` are served from the domain root, and `public/images/og-cover.jpg` is the 1200×630 link-preview image.
+
+The canonical host is currently `https://esteem-gallery.vercel.app/`. When a custom domain is connected, update the canonical and social URLs in `index.html`, the sitemap URL in `public/robots.txt`, and the `<loc>` entries in `public/sitemap.xml`.
 
 ## API routes
 

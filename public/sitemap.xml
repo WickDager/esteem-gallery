@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://esteem-gallery.vercel.app/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/hero.webp</image:loc>
+      <image:title>Esteem Gallery Washed Black oversized tee editorial</image:title>
+      <image:caption>Model wearing the Esteem Gallery Washed Black distressed drop-shoulder tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/washed-black.webp</image:loc>
+      <image:title>Washed Black Signature Distressed Tee — front</image:title>
+      <image:caption>Esteem Gallery Roots Collection Washed Black oversized tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/back.webp</image:loc>
+      <image:title>Washed Black Signature Distressed Tee — back</image:title>
+      <image:caption>Back view of the Esteem Gallery Washed Black distressed tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/vintage-grey.webp</image:loc>
+      <image:title>Vintage Grey Signature Distressed Tee — front</image:title>
+      <image:caption>Esteem Gallery Roots Collection Vintage Grey oversized tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/sand-beige.webp</image:loc>
+      <image:title>Sand Beige Signature Distressed Tee — front</image:title>
+      <image:caption>Esteem Gallery Roots Collection Sand Beige oversized tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/olive-green.webp</image:loc>
+      <image:title>Olive Green Signature Distressed Tee — front</image:title>
+      <image:caption>Esteem Gallery Roots Collection Olive Green oversized tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/off-white.webp</image:loc>
+      <image:title>Off White Signature Distressed Tee — front</image:title>
+      <image:caption>Esteem Gallery Roots Collection Off White oversized tee.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/look-01-final.webp</image:loc>
+      <image:title>Quiet confidence — Esteem Gallery lookbook 01</image:title>
+      <image:caption>Esteem Gallery oversized tee urban editorial in Harare.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/look-03-final.webp</image:loc>
+      <image:title>No permission needed — Esteem Gallery lookbook 02</image:title>
+      <image:caption>Esteem Gallery oversized tee urban editorial in Harare.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/look-02-final.webp</image:loc>
+      <image:title>The detail is the difference — Esteem Gallery lookbook 03</image:title>
+      <image:caption>Esteem Gallery oversized tee urban editorial in Harare.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://esteem-gallery.vercel.app/images/look-04-final.webp</image:loc>
+      <image:title>Your city. Your canvas. — Esteem Gallery lookbook 04</image:title>
+      <image:caption>Esteem Gallery oversized tee urban editorial in Harare.</image:caption>
+    </image:image>
+  </url>
+</urlset>

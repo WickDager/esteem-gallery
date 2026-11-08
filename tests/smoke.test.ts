@@ -145,6 +145,80 @@ test('storefront shell and health endpoint respond', async () => {
   assert.equal(healthBody.store, STORE_INFO.name);
 });
 
+test('serves crawlable SEO metadata, robots and sitemap', async () => {
+  const robots = await fetchApp('/robots.txt');
+  assert.equal(robots.status, 200);
+  assert.match(robots.headers.get('content-type') ?? '', /text\/plain/);
+  const robotsBody = await robots.text();
+  assert.match(robotsBody, /^User-agent: \*/m);
+  assert.match(
+    robotsBody,
+    /Sitemap: https:\/\/esteem-gallery\.vercel\.app\/sitemap\.xml/,
+    'robots.txt should point at the production sitemap'
+  );
+
+  const sitemap = await fetchApp('/sitemap.xml');
+  assert.equal(sitemap.status, 200);
+  assert.match(sitemap.headers.get('content-type') ?? '', /xml/);
+  const sitemapBody = await sitemap.text();
+  assert.match(sitemapBody, /^<\?xml/);
+  assert.ok(
+    sitemapBody.includes('<loc>https://esteem-gallery.vercel.app/</loc>'),
+    'sitemap should list the canonical homepage'
+  );
+  for (const product of ROOTS_COLLECTION) {
+    assert.ok(
+      sitemapBody.includes(`<image:loc>https://esteem-gallery.vercel.app/images/${product.id}.webp</image:loc>`),
+      `sitemap should list the ${product.name} image`
+    );
+  }
+  for (const item of LOOKBOOK_ITEMS) {
+    assert.ok(
+      sitemapBody.includes(
+        `<image:loc>https://esteem-gallery.vercel.app/images/${item.image}-final.webp</image:loc>`
+      ),
+      `sitemap should list the ${item.title} lookbook image`
+    );
+  }
+
+  const page = await fetchApp('/');
+  const html = await page.text();
+  assert.ok(
+    html.includes('<title>Esteem Gallery | Streetwear &amp; Oversized Tees in Harare</title>'),
+    'homepage should have the keyword-focused title'
+  );
+  assert.match(
+    html,
+    /rel="canonical" href="https:\/\/esteem-gallery\.vercel\.app\/"/,
+    'homepage should declare the production canonical URL'
+  );
+  assert.match(
+    html,
+    /property="og:image"[\s\S]{0,80}content="https:\/\/esteem-gallery\.vercel\.app\/images\/og-cover\.jpg"/,
+    'og:image should be an absolute URL'
+  );
+
+  const structuredData = html.match(
+    /<script type="application\/ld\+json">([\s\S]*?)<\/script>/
+  );
+  assert.ok(structuredData, 'homepage should include JSON-LD');
+  const graph = JSON.parse(structuredData[1]) as {
+    '@graph': Array<{ '@type': string }>;
+  };
+  const types = graph['@graph'].map((node) => node['@type']);
+  assert.ok(types.includes('ClothingStore'), 'JSON-LD should describe the store');
+  assert.ok(types.includes('WebSite'), 'JSON-LD should describe the website');
+  assert.ok(types.includes('ItemList'), 'JSON-LD should describe the Roots Collection');
+
+  const ogImage = await fetchApp('/images/og-cover.jpg');
+  assert.equal(ogImage.status, 200);
+  assert.match(ogImage.headers.get('content-type') ?? '', /^image\/jpeg/);
+  const ogBytes = Buffer.from(await ogImage.arrayBuffer());
+  assert.ok(ogBytes.length > 10_000, 'social preview image looks too small');
+  assert.equal(ogBytes[0], 0xff, 'social preview should be a JPEG');
+  assert.equal(ogBytes[1], 0xd8, 'social preview should be a JPEG');
+});
+
 test('catalog still lists the five Roots colorways', () => {
   assert.equal(ROOTS_COLLECTION.length, 5);
 });

@@ -205,12 +205,13 @@ export default function App() {
             className="hero-image"
             src="/images/hero.webp"
             alt="Model wearing the Esteem Gallery Washed Black distressed drop-shoulder tee in a concrete urban setting"
+            fetchPriority="high"
             style={{ transform: `translateY(${heroParallaxY})` }}
           />
           <div className="hero-shade" />
 
           <div className="hero-topline">
-            <span>INDEPENDENT SPIRIT. EVERYDAY EXPRESSION.</span>
+            <span>STREETWEAR FROM HARARE, ZIMBABWE.</span>
             <span>VOL. 001 — THE ROOTS COLLECTION</span>
           </div>
 
@@ -229,7 +230,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              ESTEEM
+              ESTEEM{' '}
               <br />
               GALLERY
               <svg
@@ -336,7 +337,7 @@ export default function App() {
               <p>
                 One signature silhouette. Five perspectives.
                 <br />
-                Vintage washed. Intentionally distressed.
+                Vintage-washed oversized tees. Intentionally distressed.
               </p>
               <a href="#products">
                 Explore all colorways <ArrowRight size={17} />
@@ -441,8 +442,8 @@ export default function App() {
               <p className="ethos-description">
                 Born from street culture. Built on individuality.
                 <br />
-                Esteem Gallery is for the ones who see beyond the ordinary — who move with purpose
-                and wear their story, unapologetically.
+                Esteem Gallery is a Harare-based streetwear label making vintage-washed,
+                distressed oversized tees for the ones who wear their story, unapologetically.
               </p>
               <a href="#lookbook" className="magnetic outline-button">
                 Step into our world <ArrowRight size={18} />
